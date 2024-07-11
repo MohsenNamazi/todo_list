@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:todo_list/app_router.dart';
 import 'package:todo_list/dependency_injector/injector.dart';
+import 'package:todo_list/features/common/theme/color_theme.dart';
 
 void main() {
   // initialize the injector
@@ -20,10 +21,10 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       locale: const Locale('en'),
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      //TODO(Mohsen): Make theme selectable by Cubit
+      themeMode: ThemeMode.system,
+      theme: lightTheme,
+      darkTheme: darkTheme,
       routerConfig: inject<AppRouter>().config(),
     );
   }
