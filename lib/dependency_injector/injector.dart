@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:todo_list/app_router.dart';
+import 'package:todo_list/data/network/todoist/todoist_network.dart';
 
 final _getIt = GetIt.instance;
 
@@ -16,6 +17,9 @@ abstract class Injector {
       )
       ..registerLazySingleton(
         () => Dio(),
+      )
+      ..registerLazySingleton(
+        () => TodoistNetwork(inject()),
       );
   }
 
