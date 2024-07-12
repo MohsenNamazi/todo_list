@@ -1,9 +1,12 @@
 import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:todo_list/app_router.dart';
 import 'package:todo_list/data/network/todoist/todoist_network.dart';
+import 'package:todo_list/data/repository/projects_repository.dart';
+import 'package:todo_list/features/projects/cubit/projects_view_cubit.dart';
 
 final _getIt = GetIt.instance;
 
@@ -19,7 +22,13 @@ abstract class Injector {
         () => Dio(),
       )
       ..registerLazySingleton(
+        () => ProjectsRepository(inject()),
+      )
+      ..registerLazySingleton(
         () => TodoistNetwork(inject()),
+      )
+      ..registerLazyBlocSingleton(
+        () => ProjectsViewCubit(repository: inject()),
       );
   }
 
@@ -70,10 +79,10 @@ class InjectorException {
   }
 }
 
-// extension on GetIt {
-//   void registerLazyBlocSingleton<B extends BlocBase<Object>>(
-//     B Function() create,
-//   ) {
-//     registerLazySingleton(create, dispose: (bloc) => bloc.close());
-//   }
-// }
+extension on GetIt {
+  void registerLazyBlocSingleton<B extends BlocBase<Object>>(
+    B Function() create,
+  ) {
+    registerLazySingleton(create, dispose: (bloc) => bloc.close());
+  }
+}
