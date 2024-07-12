@@ -26,5 +26,5 @@ class Project with _$Project {
 }
 
 extension ProjectExtension on Project {
-  String get colorCode => TodoistColor.fromName(color).colorCode;
+  int get colorCode => TodoistColor.fromName(color).colorCode;
 }

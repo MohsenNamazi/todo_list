@@ -1,6 +1,8 @@
 {
-    "helloWorld": "Hello World!",
-    "@helloWorld": {
-      "description": "The conventional newborn programmer greeting"
-    }
+    "welcome": "Welcome!",
+    "projects": "Projects",
+    "enterProjectName": "Enter the new project name:",
+    "add": "Add",
+    "cancel": "Cancel",
+    "addProjectsTooltip": "Add new project"
 }

@@ -25,7 +25,7 @@ final lightTheme = ThemeData(
   appBarTheme: AppBarTheme(
     backgroundColor: ColorPalettes.neutralLight[50],
     foregroundColor: ColorPalettes.neutralLight[900],
-    elevation: 2,
+    elevation: 0,
   ),
   textTheme: const TextTheme().apply(
     bodyColor: _defaultTextColorLight,
@@ -56,7 +56,7 @@ final darkTheme = ThemeData(
   appBarTheme: AppBarTheme(
     backgroundColor: ColorPalettes.neutralDark[50],
     foregroundColor: ColorPalettes.neutralDark[900],
-    elevation: 1,
+    elevation: 0,
   ),
   textTheme: const TextTheme().apply(
     bodyColor: _defaultTextColorDark,
