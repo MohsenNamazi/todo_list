@@ -22,7 +22,7 @@ void main() {
     projectsViewCubit.close();
   });
 
-  group('ProjectsViewCubit', () async {
+  group('ProjectsViewCubit', () {
     blocTest<ProjectsViewCubit, ProjectsViewState>(
       'emits [loading, data] when getProjects is successful',
       setUp: () {
