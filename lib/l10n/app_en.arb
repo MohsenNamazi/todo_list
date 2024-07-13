@@ -1,6 +1,7 @@
 {
     "welcome": "Welcome!",
     "projects": "Projects",
+    "tasks": "Tasks",
     "enterProjectName": "Enter the new project name:",
     "add": "Add",
     "cancel": "Cancel",

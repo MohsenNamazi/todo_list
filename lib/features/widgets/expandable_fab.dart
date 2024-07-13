@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
+import 'package:todo_list/features/common/theme/colors.dart';
+
 @immutable
 class ExpandableFab extends StatefulWidget {
   const ExpandableFab({
     super.key,
-    this.initialOpen,
     required this.distance,
     required this.children,
   });
 
-  final bool? initialOpen;
   final double distance;
   final List<Widget> children;
 
@@ -22,14 +22,13 @@ class _ExpandableFabState extends State<ExpandableFab>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<double> _expandAnimation;
-  bool _open = false;
+  final _isExpandedNotifier = ValueNotifier(false);
 
   @override
   void initState() {
     super.initState();
-    _open = widget.initialOpen ?? false;
     _controller = AnimationController(
-      value: _open ? 1.0 : 0.0,
+      value: _isExpandedNotifier.value ? 1.0 : 0.0,
       duration: const Duration(milliseconds: 250),
       vsync: this,
     );
@@ -47,14 +46,12 @@ class _ExpandableFabState extends State<ExpandableFab>
   }
 
   void _toggle() {
-    setState(() {
-      _open = !_open;
-      if (_open) {
-        _controller.forward();
-      } else {
-        _controller.reverse();
-      }
-    });
+    _isExpandedNotifier.value = !_isExpandedNotifier.value;
+    if (_isExpandedNotifier.value) {
+      _controller.forward();
+    } else {
+      _controller.reverse();
+    }
   }
 
   @override
@@ -99,7 +96,7 @@ class _ExpandableFabState extends State<ExpandableFab>
   List<Widget> _buildExpandingActionButtons() {
     final children = <Widget>[];
     final count = widget.children.length;
-    final step = 90.0 / (count - 1);
+    final step = 60.0 / (count - 1);
     for (var i = 0, angleInDegrees = 0.0;
         i < count;
         i++, angleInDegrees += step) {
@@ -116,28 +113,32 @@ class _ExpandableFabState extends State<ExpandableFab>
   }
 
   Widget _buildTapToOpenFab() {
-    return IgnorePointer(
-      ignoring: _open,
-      child: AnimatedContainer(
-        transformAlignment: Alignment.center,
-        transform: Matrix4.diagonal3Values(
-          _open ? 0.7 : 1.0,
-          _open ? 0.7 : 1.0,
-          1.0,
-        ),
-        duration: const Duration(milliseconds: 250),
-        curve: const Interval(0.0, 0.5, curve: Curves.easeOut),
-        child: AnimatedOpacity(
-          opacity: _open ? 0.0 : 1.0,
-          curve: const Interval(0.25, 1.0, curve: Curves.easeInOut),
-          duration: const Duration(milliseconds: 250),
-          child: FloatingActionButton(
-            onPressed: _toggle,
-            child: const Icon(Icons.create),
-          ),
-        ),
-      ),
-    );
+    return ValueListenableBuilder(
+        valueListenable: _isExpandedNotifier,
+        builder: (context, isExpanded, _) {
+          return IgnorePointer(
+            ignoring: isExpanded,
+            child: AnimatedContainer(
+              transformAlignment: Alignment.center,
+              transform: Matrix4.diagonal3Values(
+                isExpanded ? 0.7 : 1.0,
+                isExpanded ? 0.7 : 1.0,
+                1.0,
+              ),
+              duration: const Duration(milliseconds: 250),
+              curve: const Interval(0.0, 0.5, curve: Curves.easeOut),
+              child: AnimatedOpacity(
+                opacity: isExpanded ? 0.0 : 1.0,
+                curve: const Interval(0.25, 1.0, curve: Curves.easeInOut),
+                duration: const Duration(milliseconds: 250),
+                child: FloatingActionButton(
+                  onPressed: _toggle,
+                  child: const Icon(Icons.add),
+                ),
+              ),
+            ),
+          );
+        });
   }
 }
 
@@ -194,38 +195,15 @@ class ActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return Material(
       shape: const CircleBorder(),
       clipBehavior: Clip.antiAlias,
-      color: theme.colorScheme.secondary,
+      color: ColorPalettes.pink[200],
       elevation: 4,
       child: IconButton(
         onPressed: onPressed,
         icon: icon,
-        color: theme.colorScheme.onSecondary,
-      ),
-    );
-  }
-}
-
-@immutable
-class FakeItem extends StatelessWidget {
-  const FakeItem({
-    super.key,
-    required this.isBig,
-  });
-
-  final bool isBig;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 24),
-      height: isBig ? 128 : 36,
-      decoration: BoxDecoration(
-        borderRadius: const BorderRadius.all(Radius.circular(8)),
-        color: Colors.grey.shade300,
+        color: ColorPalettes.neutral[900],
       ),
     );
   }
