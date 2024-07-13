@@ -96,7 +96,7 @@ class _ProjectsList extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.all(Spacing.s2),
           child: ListTile(
-              title: Text(project.name),
+              title: Text(project.name ?? ''),
               subtitle: Text(project.commentCount.toString()),
               trailing: const Icon(Icons.arrow_circle_right),
               iconColor: Color(project.colorCode),

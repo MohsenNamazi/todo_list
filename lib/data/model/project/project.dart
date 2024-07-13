@@ -8,17 +8,17 @@ part 'project.g.dart';
 class Project with _$Project {
   const factory Project({
     required String id,
-    required String name,
-    @JsonKey(name: 'comment_count') required int commentCount,
-    required int order,
-    required String color,
+    String? name,
+    @JsonKey(name: 'comment_count') int? commentCount,
+    int? order,
+    String? color,
     @JsonKey(name: 'parent_id') String? parentId,
-    @JsonKey(name: 'is_shared') required bool isShared,
-    @JsonKey(name: 'is_favorite') required bool isFavorite,
-    @JsonKey(name: 'is_inbox_project') required bool isInboxProject,
-    @JsonKey(name: 'is_team_inbox') required bool isTeamInbox,
-    @JsonKey(name: 'view_style') required String viewStyle,
-    required String url,
+    @JsonKey(name: 'is_shared') bool? isShared,
+    @JsonKey(name: 'is_favorite') bool? isFavorite,
+    @JsonKey(name: 'is_inbox_project') bool? isInboxProject,
+    @JsonKey(name: 'is_team_inbox') bool? isTeamInbox,
+    @JsonKey(name: 'view_style') String? viewStyle,
+    String? url,
   }) = _Project;
 
   factory Project.fromJson(Map<String, dynamic> json) =>
@@ -26,5 +26,5 @@ class Project with _$Project {
 }
 
 extension ProjectExtension on Project {
-  int get colorCode => TodoistColor.fromName(color).colorCode;
+  int get colorCode => TodoistColor.fromName(color ?? '').colorCode;
 }

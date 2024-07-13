@@ -21,24 +21,24 @@ Project _$ProjectFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Project {
   String get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
   @JsonKey(name: 'comment_count')
-  int get commentCount => throw _privateConstructorUsedError;
-  int get order => throw _privateConstructorUsedError;
-  String get color => throw _privateConstructorUsedError;
+  int? get commentCount => throw _privateConstructorUsedError;
+  int? get order => throw _privateConstructorUsedError;
+  String? get color => throw _privateConstructorUsedError;
   @JsonKey(name: 'parent_id')
   String? get parentId => throw _privateConstructorUsedError;
   @JsonKey(name: 'is_shared')
-  bool get isShared => throw _privateConstructorUsedError;
+  bool? get isShared => throw _privateConstructorUsedError;
   @JsonKey(name: 'is_favorite')
-  bool get isFavorite => throw _privateConstructorUsedError;
+  bool? get isFavorite => throw _privateConstructorUsedError;
   @JsonKey(name: 'is_inbox_project')
-  bool get isInboxProject => throw _privateConstructorUsedError;
+  bool? get isInboxProject => throw _privateConstructorUsedError;
   @JsonKey(name: 'is_team_inbox')
-  bool get isTeamInbox => throw _privateConstructorUsedError;
+  bool? get isTeamInbox => throw _privateConstructorUsedError;
   @JsonKey(name: 'view_style')
-  String get viewStyle => throw _privateConstructorUsedError;
-  String get url => throw _privateConstructorUsedError;
+  String? get viewStyle => throw _privateConstructorUsedError;
+  String? get url => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -52,17 +52,17 @@ abstract class $ProjectCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String name,
-      @JsonKey(name: 'comment_count') int commentCount,
-      int order,
-      String color,
+      String? name,
+      @JsonKey(name: 'comment_count') int? commentCount,
+      int? order,
+      String? color,
       @JsonKey(name: 'parent_id') String? parentId,
-      @JsonKey(name: 'is_shared') bool isShared,
-      @JsonKey(name: 'is_favorite') bool isFavorite,
-      @JsonKey(name: 'is_inbox_project') bool isInboxProject,
-      @JsonKey(name: 'is_team_inbox') bool isTeamInbox,
-      @JsonKey(name: 'view_style') String viewStyle,
-      String url});
+      @JsonKey(name: 'is_shared') bool? isShared,
+      @JsonKey(name: 'is_favorite') bool? isFavorite,
+      @JsonKey(name: 'is_inbox_project') bool? isInboxProject,
+      @JsonKey(name: 'is_team_inbox') bool? isTeamInbox,
+      @JsonKey(name: 'view_style') String? viewStyle,
+      String? url});
 }
 
 /// @nodoc
@@ -79,67 +79,67 @@ class _$ProjectCopyWithImpl<$Res, $Val extends Project>
   @override
   $Res call({
     Object? id = null,
-    Object? name = null,
-    Object? commentCount = null,
-    Object? order = null,
-    Object? color = null,
+    Object? name = freezed,
+    Object? commentCount = freezed,
+    Object? order = freezed,
+    Object? color = freezed,
     Object? parentId = freezed,
-    Object? isShared = null,
-    Object? isFavorite = null,
-    Object? isInboxProject = null,
-    Object? isTeamInbox = null,
-    Object? viewStyle = null,
-    Object? url = null,
+    Object? isShared = freezed,
+    Object? isFavorite = freezed,
+    Object? isInboxProject = freezed,
+    Object? isTeamInbox = freezed,
+    Object? viewStyle = freezed,
+    Object? url = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      name: null == name
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      commentCount: null == commentCount
+              as String?,
+      commentCount: freezed == commentCount
           ? _value.commentCount
           : commentCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      order: null == order
+              as int?,
+      order: freezed == order
           ? _value.order
           : order // ignore: cast_nullable_to_non_nullable
-              as int,
-      color: null == color
+              as int?,
+      color: freezed == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       parentId: freezed == parentId
           ? _value.parentId
           : parentId // ignore: cast_nullable_to_non_nullable
               as String?,
-      isShared: null == isShared
+      isShared: freezed == isShared
           ? _value.isShared
           : isShared // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isFavorite: null == isFavorite
+              as bool?,
+      isFavorite: freezed == isFavorite
           ? _value.isFavorite
           : isFavorite // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isInboxProject: null == isInboxProject
+              as bool?,
+      isInboxProject: freezed == isInboxProject
           ? _value.isInboxProject
           : isInboxProject // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isTeamInbox: null == isTeamInbox
+              as bool?,
+      isTeamInbox: freezed == isTeamInbox
           ? _value.isTeamInbox
           : isTeamInbox // ignore: cast_nullable_to_non_nullable
-              as bool,
-      viewStyle: null == viewStyle
+              as bool?,
+      viewStyle: freezed == viewStyle
           ? _value.viewStyle
           : viewStyle // ignore: cast_nullable_to_non_nullable
-              as String,
-      url: null == url
+              as String?,
+      url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -153,17 +153,17 @@ abstract class _$$ProjectImplCopyWith<$Res> implements $ProjectCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String name,
-      @JsonKey(name: 'comment_count') int commentCount,
-      int order,
-      String color,
+      String? name,
+      @JsonKey(name: 'comment_count') int? commentCount,
+      int? order,
+      String? color,
       @JsonKey(name: 'parent_id') String? parentId,
-      @JsonKey(name: 'is_shared') bool isShared,
-      @JsonKey(name: 'is_favorite') bool isFavorite,
-      @JsonKey(name: 'is_inbox_project') bool isInboxProject,
-      @JsonKey(name: 'is_team_inbox') bool isTeamInbox,
-      @JsonKey(name: 'view_style') String viewStyle,
-      String url});
+      @JsonKey(name: 'is_shared') bool? isShared,
+      @JsonKey(name: 'is_favorite') bool? isFavorite,
+      @JsonKey(name: 'is_inbox_project') bool? isInboxProject,
+      @JsonKey(name: 'is_team_inbox') bool? isTeamInbox,
+      @JsonKey(name: 'view_style') String? viewStyle,
+      String? url});
 }
 
 /// @nodoc
@@ -178,67 +178,67 @@ class __$$ProjectImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? name = null,
-    Object? commentCount = null,
-    Object? order = null,
-    Object? color = null,
+    Object? name = freezed,
+    Object? commentCount = freezed,
+    Object? order = freezed,
+    Object? color = freezed,
     Object? parentId = freezed,
-    Object? isShared = null,
-    Object? isFavorite = null,
-    Object? isInboxProject = null,
-    Object? isTeamInbox = null,
-    Object? viewStyle = null,
-    Object? url = null,
+    Object? isShared = freezed,
+    Object? isFavorite = freezed,
+    Object? isInboxProject = freezed,
+    Object? isTeamInbox = freezed,
+    Object? viewStyle = freezed,
+    Object? url = freezed,
   }) {
     return _then(_$ProjectImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      name: null == name
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      commentCount: null == commentCount
+              as String?,
+      commentCount: freezed == commentCount
           ? _value.commentCount
           : commentCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      order: null == order
+              as int?,
+      order: freezed == order
           ? _value.order
           : order // ignore: cast_nullable_to_non_nullable
-              as int,
-      color: null == color
+              as int?,
+      color: freezed == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       parentId: freezed == parentId
           ? _value.parentId
           : parentId // ignore: cast_nullable_to_non_nullable
               as String?,
-      isShared: null == isShared
+      isShared: freezed == isShared
           ? _value.isShared
           : isShared // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isFavorite: null == isFavorite
+              as bool?,
+      isFavorite: freezed == isFavorite
           ? _value.isFavorite
           : isFavorite // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isInboxProject: null == isInboxProject
+              as bool?,
+      isInboxProject: freezed == isInboxProject
           ? _value.isInboxProject
           : isInboxProject // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isTeamInbox: null == isTeamInbox
+              as bool?,
+      isTeamInbox: freezed == isTeamInbox
           ? _value.isTeamInbox
           : isTeamInbox // ignore: cast_nullable_to_non_nullable
-              as bool,
-      viewStyle: null == viewStyle
+              as bool?,
+      viewStyle: freezed == viewStyle
           ? _value.viewStyle
           : viewStyle // ignore: cast_nullable_to_non_nullable
-              as String,
-      url: null == url
+              as String?,
+      url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -248,17 +248,17 @@ class __$$ProjectImplCopyWithImpl<$Res>
 class _$ProjectImpl implements _Project {
   const _$ProjectImpl(
       {required this.id,
-      required this.name,
-      @JsonKey(name: 'comment_count') required this.commentCount,
-      required this.order,
-      required this.color,
+      this.name,
+      @JsonKey(name: 'comment_count') this.commentCount,
+      this.order,
+      this.color,
       @JsonKey(name: 'parent_id') this.parentId,
-      @JsonKey(name: 'is_shared') required this.isShared,
-      @JsonKey(name: 'is_favorite') required this.isFavorite,
-      @JsonKey(name: 'is_inbox_project') required this.isInboxProject,
-      @JsonKey(name: 'is_team_inbox') required this.isTeamInbox,
-      @JsonKey(name: 'view_style') required this.viewStyle,
-      required this.url});
+      @JsonKey(name: 'is_shared') this.isShared,
+      @JsonKey(name: 'is_favorite') this.isFavorite,
+      @JsonKey(name: 'is_inbox_project') this.isInboxProject,
+      @JsonKey(name: 'is_team_inbox') this.isTeamInbox,
+      @JsonKey(name: 'view_style') this.viewStyle,
+      this.url});
 
   factory _$ProjectImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProjectImplFromJson(json);
@@ -266,34 +266,34 @@ class _$ProjectImpl implements _Project {
   @override
   final String id;
   @override
-  final String name;
+  final String? name;
   @override
   @JsonKey(name: 'comment_count')
-  final int commentCount;
+  final int? commentCount;
   @override
-  final int order;
+  final int? order;
   @override
-  final String color;
+  final String? color;
   @override
   @JsonKey(name: 'parent_id')
   final String? parentId;
   @override
   @JsonKey(name: 'is_shared')
-  final bool isShared;
+  final bool? isShared;
   @override
   @JsonKey(name: 'is_favorite')
-  final bool isFavorite;
+  final bool? isFavorite;
   @override
   @JsonKey(name: 'is_inbox_project')
-  final bool isInboxProject;
+  final bool? isInboxProject;
   @override
   @JsonKey(name: 'is_team_inbox')
-  final bool isTeamInbox;
+  final bool? isTeamInbox;
   @override
   @JsonKey(name: 'view_style')
-  final String viewStyle;
+  final String? viewStyle;
   @override
-  final String url;
+  final String? url;
 
   @override
   String toString() {
@@ -360,51 +360,51 @@ class _$ProjectImpl implements _Project {
 abstract class _Project implements Project {
   const factory _Project(
       {required final String id,
-      required final String name,
-      @JsonKey(name: 'comment_count') required final int commentCount,
-      required final int order,
-      required final String color,
+      final String? name,
+      @JsonKey(name: 'comment_count') final int? commentCount,
+      final int? order,
+      final String? color,
       @JsonKey(name: 'parent_id') final String? parentId,
-      @JsonKey(name: 'is_shared') required final bool isShared,
-      @JsonKey(name: 'is_favorite') required final bool isFavorite,
-      @JsonKey(name: 'is_inbox_project') required final bool isInboxProject,
-      @JsonKey(name: 'is_team_inbox') required final bool isTeamInbox,
-      @JsonKey(name: 'view_style') required final String viewStyle,
-      required final String url}) = _$ProjectImpl;
+      @JsonKey(name: 'is_shared') final bool? isShared,
+      @JsonKey(name: 'is_favorite') final bool? isFavorite,
+      @JsonKey(name: 'is_inbox_project') final bool? isInboxProject,
+      @JsonKey(name: 'is_team_inbox') final bool? isTeamInbox,
+      @JsonKey(name: 'view_style') final String? viewStyle,
+      final String? url}) = _$ProjectImpl;
 
   factory _Project.fromJson(Map<String, dynamic> json) = _$ProjectImpl.fromJson;
 
   @override
   String get id;
   @override
-  String get name;
+  String? get name;
   @override
   @JsonKey(name: 'comment_count')
-  int get commentCount;
+  int? get commentCount;
   @override
-  int get order;
+  int? get order;
   @override
-  String get color;
+  String? get color;
   @override
   @JsonKey(name: 'parent_id')
   String? get parentId;
   @override
   @JsonKey(name: 'is_shared')
-  bool get isShared;
+  bool? get isShared;
   @override
   @JsonKey(name: 'is_favorite')
-  bool get isFavorite;
+  bool? get isFavorite;
   @override
   @JsonKey(name: 'is_inbox_project')
-  bool get isInboxProject;
+  bool? get isInboxProject;
   @override
   @JsonKey(name: 'is_team_inbox')
-  bool get isTeamInbox;
+  bool? get isTeamInbox;
   @override
   @JsonKey(name: 'view_style')
-  String get viewStyle;
+  String? get viewStyle;
   @override
-  String get url;
+  String? get url;
   @override
   @JsonKey(ignore: true)
   _$$ProjectImplCopyWith<_$ProjectImpl> get copyWith =>
