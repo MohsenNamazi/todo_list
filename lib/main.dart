@@ -5,7 +5,7 @@ import 'package:todo_list/app_router.dart';
 import 'package:todo_list/dependency_injector/bloc_injector_provider.dart';
 import 'package:todo_list/dependency_injector/injector.dart';
 import 'package:todo_list/features/common/theme/color_theme.dart';
-import 'package:todo_list/features/projects/cubit/projects_view_cubit.dart';
+import 'package:todo_list/features/tasks/cubit/projects_cubit/projects_cubit.dart';
 
 void main() {
   // initialize the injector
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        InjectedBlocProvider<ProjectsViewCubit>(
+        InjectedBlocProvider<ProjectsCubit>(
           onCreate: (cubit) => cubit.getProjects(),
         ),
       ],

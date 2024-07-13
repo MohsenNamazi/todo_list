@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'projects_view_cubit.dart';
+part of 'projects_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$ProjectsViewState {
+mixin _$ProjectsState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
@@ -75,16 +75,16 @@ mixin _$ProjectsViewState {
 }
 
 /// @nodoc
-abstract class $ProjectsViewStateCopyWith<$Res> {
-  factory $ProjectsViewStateCopyWith(
-          ProjectsViewState value, $Res Function(ProjectsViewState) then) =
-      _$ProjectsViewStateCopyWithImpl<$Res, ProjectsViewState>;
+abstract class $ProjectsStateCopyWith<$Res> {
+  factory $ProjectsStateCopyWith(
+          ProjectsState value, $Res Function(ProjectsState) then) =
+      _$ProjectsStateCopyWithImpl<$Res, ProjectsState>;
 }
 
 /// @nodoc
-class _$ProjectsViewStateCopyWithImpl<$Res, $Val extends ProjectsViewState>
-    implements $ProjectsViewStateCopyWith<$Res> {
-  _$ProjectsViewStateCopyWithImpl(this._value, this._then);
+class _$ProjectsStateCopyWithImpl<$Res, $Val extends ProjectsState>
+    implements $ProjectsStateCopyWith<$Res> {
+  _$ProjectsStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -101,7 +101,7 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$ProjectsViewStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$ProjectsStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
@@ -115,7 +115,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'ProjectsViewState.initial()';
+    return 'ProjectsState.initial()';
   }
 
   @override
@@ -208,7 +208,7 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements ProjectsViewState {
+abstract class _Initial implements ProjectsState {
   const factory _Initial() = _$InitialImpl;
 }
 
@@ -221,7 +221,7 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$ProjectsViewStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$ProjectsStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
@@ -235,7 +235,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'ProjectsViewState.loading()';
+    return 'ProjectsState.loading()';
   }
 
   @override
@@ -328,7 +328,7 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements ProjectsViewState {
+abstract class _Loading implements ProjectsState {
   const factory _Loading() = _$LoadingImpl;
 }
 
@@ -343,7 +343,7 @@ abstract class _$$DataImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$DataImplCopyWithImpl<$Res>
-    extends _$ProjectsViewStateCopyWithImpl<$Res, _$DataImpl>
+    extends _$ProjectsStateCopyWithImpl<$Res, _$DataImpl>
     implements _$$DataImplCopyWith<$Res> {
   __$$DataImplCopyWithImpl(_$DataImpl _value, $Res Function(_$DataImpl) _then)
       : super(_value, _then);
@@ -377,7 +377,7 @@ class _$DataImpl implements _Data {
 
   @override
   String toString() {
-    return 'ProjectsViewState.data(projects: $projects)';
+    return 'ProjectsState.data(projects: $projects)';
   }
 
   @override
@@ -479,7 +479,7 @@ class _$DataImpl implements _Data {
   }
 }
 
-abstract class _Data implements ProjectsViewState {
+abstract class _Data implements ProjectsState {
   const factory _Data(final List<Project> projects) = _$DataImpl;
 
   List<Project> get projects;
@@ -499,7 +499,7 @@ abstract class _$$ErrorImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$ProjectsViewStateCopyWithImpl<$Res, _$ErrorImpl>
+    extends _$ProjectsStateCopyWithImpl<$Res, _$ErrorImpl>
     implements _$$ErrorImplCopyWith<$Res> {
   __$$ErrorImplCopyWithImpl(
       _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
@@ -548,7 +548,7 @@ class _$ErrorImpl implements _Error {
 
   @override
   String toString() {
-    return 'ProjectsViewState.error(projects: $projects, error: $error, stackTrace: $stackTrace)';
+    return 'ProjectsState.error(projects: $projects, error: $error, stackTrace: $stackTrace)';
   }
 
   @override
@@ -656,7 +656,7 @@ class _$ErrorImpl implements _Error {
   }
 }
 
-abstract class _Error implements ProjectsViewState {
+abstract class _Error implements ProjectsState {
   const factory _Error(
       {required final List<Project> projects,
       final Object? error,
