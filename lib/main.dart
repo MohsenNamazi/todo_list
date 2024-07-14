@@ -6,6 +6,7 @@ import 'package:todo_list/dependency_injector/bloc_injector_provider.dart';
 import 'package:todo_list/dependency_injector/injector.dart';
 import 'package:todo_list/features/common/theme/color_theme.dart';
 import 'package:todo_list/features/tasks/cubit/projects_cubit/projects_cubit.dart';
+import 'package:todo_list/features/tasks/cubit/tasks_cubit/tasks_cubit.dart';
 
 void main() {
   // initialize the injector
@@ -23,6 +24,9 @@ class MyApp extends StatelessWidget {
       providers: [
         InjectedBlocProvider<ProjectsCubit>(
           onCreate: (cubit) => cubit.getProjects(),
+        ),
+        InjectedBlocProvider<TasksCubit>(
+          onCreate: (cubit) => cubit.getTasks(),
         ),
       ],
       child: MaterialApp.router(

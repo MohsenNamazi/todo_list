@@ -6,7 +6,9 @@ import 'package:get_it/get_it.dart';
 import 'package:todo_list/app_router.dart';
 import 'package:todo_list/data/network/todoist/todoist_network.dart';
 import 'package:todo_list/data/repository/projects_repository.dart';
+import 'package:todo_list/data/repository/tasks_repository.dart';
 import 'package:todo_list/features/tasks/cubit/projects_cubit/projects_cubit.dart';
+import 'package:todo_list/features/tasks/cubit/tasks_cubit/tasks_cubit.dart';
 
 final _getIt = GetIt.instance;
 
@@ -25,10 +27,16 @@ abstract class Injector {
         () => ProjectsRepository(inject()),
       )
       ..registerLazySingleton(
+        () => TasksRepository(inject()),
+      )
+      ..registerLazySingleton(
         () => TodoistNetwork(inject()),
       )
       ..registerLazyBlocSingleton(
         () => ProjectsCubit(repository: inject()),
+      )
+      ..registerLazyBlocSingleton(
+        () => TasksCubit(repository: inject()),
       );
   }
 

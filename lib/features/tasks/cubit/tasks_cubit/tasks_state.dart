@@ -10,7 +10,9 @@ class TasksState with _$TasksState {
     required StackTrace stackTrace,
     required List<Task> tasks,
   }) = _Error;
+}
 
+extension TasksStateExtensions on TasksState {
   List<Task> getData() => maybeWhen(
         data: (tasks) => tasks,
         error: (error, stackTrace, tasks) => tasks,

@@ -1,9 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_list/data/model/task/task.dart';
 import 'package:todo_list/features/common/extensions/build_context.dart';
+import 'package:todo_list/features/tasks/cubit/tasks_cubit/tasks_cubit.dart';
 import 'package:todo_list/features/tasks/widgets/tasks_expandable_fab.dart';
 import 'package:todo_list/features/tasks/widgets/tasks_filter_view.dart';
 import 'package:todo_list/features/tasks/widgets/tasks_view.dart';
+import 'package:todo_list/features/widgets/loading_indicator.dart';
 
 @RoutePage()
 class TasksScreen extends StatelessWidget {
@@ -17,14 +21,33 @@ class TasksScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(l10n.tasks),
       ),
-      body: const Column(
-        children: [
-          TasksFilterView(),
-          Expanded(
-            child: TasksView(),
-          ),
-        ],
-      ),
+      body: BlocConsumer<TasksCubit, TasksState>(
+          listener: (BuildContext context, Object? state) {
+            // TODO(Mohsen): handle the error messages
+          },
+          builder: (context, state) => state.maybeWhen(
+                data: (tasks) => _TasksDataWidget(tasks),
+                error: (_, __, tasks) => _TasksDataWidget(tasks),
+                orElse: () => const LoadingIndicator(),
+              )),
+    );
+  }
+}
+
+class _TasksDataWidget extends StatelessWidget {
+  const _TasksDataWidget(this.tasks);
+
+  final List<Task> tasks;
+
+  @override
+  Widget build(BuildContext context) {
+    return const Column(
+      children: [
+        TasksFilterView(),
+        Expanded(
+          child: TasksView(),
+        ),
+      ],
     );
   }
 }
