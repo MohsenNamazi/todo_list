@@ -5,5 +5,7 @@
     "enterProjectName": "Enter the new project name:",
     "add": "Add",
     "cancel": "Cancel",
-    "addProjectsTooltip": "Add new project"
+    "addProjectsTooltip": "Add new project",
+    "anErrorHappened": "An error happened"
+
 }

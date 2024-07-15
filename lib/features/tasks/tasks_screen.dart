@@ -22,8 +22,14 @@ class TasksScreen extends StatelessWidget {
         title: Text(l10n.tasks),
       ),
       body: BlocConsumer<TasksCubit, TasksState>(
-          listener: (BuildContext context, Object? state) {
+          listener: (BuildContext context, TasksState state) {
             // TODO(Mohsen): handle the error messages
+            state.maybeWhen(
+                error: (error, stackTrace, tasks) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text(l10n.anErrorHappened)));
+                },
+                orElse: () => null);
           },
           builder: (context, state) => state.maybeWhen(
                 data: (tasks) => _TasksDataWidget(tasks),
@@ -41,11 +47,11 @@ class _TasksDataWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       children: [
-        TasksFilterView(),
+        const TasksFilterView(),
         Expanded(
-          child: TasksView(),
+          child: TasksView(tasks: tasks),
         ),
       ],
     );
