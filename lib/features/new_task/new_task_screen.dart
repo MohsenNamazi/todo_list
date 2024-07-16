@@ -96,7 +96,8 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
                                 child: Center(
                                   child: ProjectSelector(
                                     onChanged: (project) {
-                                      selectedProject = project;
+                                      _newTaskBody = _newTaskBody.copyWith(
+                                          projectId: project?.id);
                                     },
                                   ),
                                 ),
@@ -111,7 +112,10 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
                               Expanded(
                                 child: Center(
                                   child: PrioritySelector(
-                                    onChanged: (priority) {},
+                                    onChanged: (priority) {
+                                      _newTaskBody = _newTaskBody.copyWith(
+                                          priority: priority);
+                                    },
                                   ),
                                 ),
                               ),

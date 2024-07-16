@@ -10,6 +10,10 @@ extension TasksExptension on Tasks {
     if (filter.projectId != null) {
       tasks = where((task) => task.projectId == filter.projectId).toList();
     }
+    if (filter.priority != null) {
+      tasks = where((task) => task.priority == filter.priority).toList();
+    }
+
     return tasks;
   }
 }

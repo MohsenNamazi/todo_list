@@ -1,23 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todo_list/data/model/project/project.dart';
 import 'package:todo_list/features/common/extensions/build_context.dart';
-import 'package:todo_list/features/tasks/cubit/projects_cubit/projects_cubit.dart';
 
 class PrioritySelector extends StatefulWidget {
   const PrioritySelector({required this.onChanged, super.key});
-  final Function(Project?) onChanged;
+  final Function(int?) onChanged;
 
   @override
   State<PrioritySelector> createState() => _PrioritySelectorState();
 }
 
 class _PrioritySelectorState extends State<PrioritySelector> {
-  Project? selectedProject;
+  int? selectedProject;
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+
+    final prioritiesMap = <int, String>{
+      1: l10n.priority1,
+      2: l10n.priority2,
+      3: l10n.priority3,
+      4: l10n.priority4,
+    };
+
     final icon = selectedProject == null
         ? const Icon(Icons.keyboard_arrow_down)
         : InkWell(
@@ -28,30 +33,24 @@ class _PrioritySelectorState extends State<PrioritySelector> {
               });
             },
             child: const Icon(Icons.close));
-    return BlocBuilder<ProjectsCubit, ProjectsState>(
-      builder: (context, state) {
-        final projects = state.getData();
-        return DropdownButton<Project>(
-          underline: const SizedBox.shrink(),
-          value: selectedProject,
-          icon: icon,
-          elevation: 16,
-          hint: Text(l10n.project),
-          items: projects
-              .map(
-                (project) => DropdownMenuItem<Project>(
-                  value: project,
-                  child: Text(project.name ?? ''),
-                ),
-              )
-              .toList(),
-          onChanged: (Project? project) {
-            widget.onChanged(project);
-            setState(() {
-              selectedProject = project;
-            });
-          },
-        );
+
+    return DropdownButton<int>(
+      underline: const SizedBox.shrink(),
+      value: selectedProject,
+      icon: icon,
+      elevation: 16,
+      hint: Text(l10n.priority),
+      items: prioritiesMap.entries
+          .map((entry) => DropdownMenuItem<int>(
+                value: entry.key,
+                child: Text(entry.value),
+              ))
+          .toList(),
+      onChanged: (int? num) {
+        widget.onChanged(num);
+        setState(() {
+          selectedProject = num;
+        });
       },
     );
   }

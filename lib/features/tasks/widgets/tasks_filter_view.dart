@@ -3,6 +3,7 @@ import 'package:todo_list/data/model/task_filter/task_filter.dart';
 import 'package:todo_list/features/common/consts/spacing.dart';
 import 'package:todo_list/features/common/extensions/build_context.dart';
 import 'package:todo_list/features/tasks/widgets/list_title.dart';
+import 'package:todo_list/features/widgets/priority_selector.dart';
 import 'package:todo_list/features/widgets/project_selector.dart';
 
 class TasksFilterView extends StatelessWidget {
@@ -31,6 +32,13 @@ class TasksFilterView extends StatelessWidget {
                   onChanged: (project) {
                     taskFilterNotifier.value = taskFilterNotifier.value
                         .copyWith(projectId: project?.id);
+                  },
+                ),
+                const SizedBox(width: Spacing.s4),
+                PrioritySelector(
+                  onChanged: (priority) {
+                    taskFilterNotifier.value =
+                        taskFilterNotifier.value.copyWith(priority: priority);
                   },
                 ),
               ],

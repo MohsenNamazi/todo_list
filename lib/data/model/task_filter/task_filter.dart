@@ -11,6 +11,7 @@ class TaskFilter with _$TaskFilter {
     String? label,
     String? filter,
     String? lang,
+    int? priority,
     List<int>? ids,
   }) = _TaskFilter;
 

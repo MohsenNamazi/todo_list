@@ -13,6 +13,7 @@ _$TaskFilterImpl _$$TaskFilterImplFromJson(Map<String, dynamic> json) =>
       label: json['label'] as String?,
       filter: json['filter'] as String?,
       lang: json['lang'] as String?,
+      priority: (json['priority'] as num?)?.toInt(),
       ids: (json['ids'] as List<dynamic>?)
           ?.map((e) => (e as num).toInt())
           .toList(),
@@ -25,5 +26,6 @@ Map<String, dynamic> _$$TaskFilterImplToJson(_$TaskFilterImpl instance) =>
       'label': instance.label,
       'filter': instance.filter,
       'lang': instance.lang,
+      'priority': instance.priority,
       'ids': instance.ids,
     };

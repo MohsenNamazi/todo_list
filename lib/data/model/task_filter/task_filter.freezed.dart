@@ -25,6 +25,7 @@ mixin _$TaskFilter {
   String? get label => throw _privateConstructorUsedError;
   String? get filter => throw _privateConstructorUsedError;
   String? get lang => throw _privateConstructorUsedError;
+  int? get priority => throw _privateConstructorUsedError;
   List<int>? get ids => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -45,6 +46,7 @@ abstract class $TaskFilterCopyWith<$Res> {
       String? label,
       String? filter,
       String? lang,
+      int? priority,
       List<int>? ids});
 }
 
@@ -66,6 +68,7 @@ class _$TaskFilterCopyWithImpl<$Res, $Val extends TaskFilter>
     Object? label = freezed,
     Object? filter = freezed,
     Object? lang = freezed,
+    Object? priority = freezed,
     Object? ids = freezed,
   }) {
     return _then(_value.copyWith(
@@ -89,6 +92,10 @@ class _$TaskFilterCopyWithImpl<$Res, $Val extends TaskFilter>
           ? _value.lang
           : lang // ignore: cast_nullable_to_non_nullable
               as String?,
+      priority: freezed == priority
+          ? _value.priority
+          : priority // ignore: cast_nullable_to_non_nullable
+              as int?,
       ids: freezed == ids
           ? _value.ids
           : ids // ignore: cast_nullable_to_non_nullable
@@ -111,6 +118,7 @@ abstract class _$$TaskFilterImplCopyWith<$Res>
       String? label,
       String? filter,
       String? lang,
+      int? priority,
       List<int>? ids});
 }
 
@@ -130,6 +138,7 @@ class __$$TaskFilterImplCopyWithImpl<$Res>
     Object? label = freezed,
     Object? filter = freezed,
     Object? lang = freezed,
+    Object? priority = freezed,
     Object? ids = freezed,
   }) {
     return _then(_$TaskFilterImpl(
@@ -153,6 +162,10 @@ class __$$TaskFilterImplCopyWithImpl<$Res>
           ? _value.lang
           : lang // ignore: cast_nullable_to_non_nullable
               as String?,
+      priority: freezed == priority
+          ? _value.priority
+          : priority // ignore: cast_nullable_to_non_nullable
+              as int?,
       ids: freezed == ids
           ? _value._ids
           : ids // ignore: cast_nullable_to_non_nullable
@@ -170,6 +183,7 @@ class _$TaskFilterImpl implements _TaskFilter {
       this.label,
       this.filter,
       this.lang,
+      this.priority,
       final List<int>? ids})
       : _ids = ids;
 
@@ -186,6 +200,8 @@ class _$TaskFilterImpl implements _TaskFilter {
   final String? filter;
   @override
   final String? lang;
+  @override
+  final int? priority;
   final List<int>? _ids;
   @override
   List<int>? get ids {
@@ -198,7 +214,7 @@ class _$TaskFilterImpl implements _TaskFilter {
 
   @override
   String toString() {
-    return 'TaskFilter(projectId: $projectId, sectionId: $sectionId, label: $label, filter: $filter, lang: $lang, ids: $ids)';
+    return 'TaskFilter(projectId: $projectId, sectionId: $sectionId, label: $label, filter: $filter, lang: $lang, priority: $priority, ids: $ids)';
   }
 
   @override
@@ -213,13 +229,15 @@ class _$TaskFilterImpl implements _TaskFilter {
             (identical(other.label, label) || other.label == label) &&
             (identical(other.filter, filter) || other.filter == filter) &&
             (identical(other.lang, lang) || other.lang == lang) &&
+            (identical(other.priority, priority) ||
+                other.priority == priority) &&
             const DeepCollectionEquality().equals(other._ids, _ids));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, projectId, sectionId, label,
-      filter, lang, const DeepCollectionEquality().hash(_ids));
+      filter, lang, priority, const DeepCollectionEquality().hash(_ids));
 
   @JsonKey(ignore: true)
   @override
@@ -242,6 +260,7 @@ abstract class _TaskFilter implements TaskFilter {
       final String? label,
       final String? filter,
       final String? lang,
+      final int? priority,
       final List<int>? ids}) = _$TaskFilterImpl;
 
   factory _TaskFilter.fromJson(Map<String, dynamic> json) =
@@ -257,6 +276,8 @@ abstract class _TaskFilter implements TaskFilter {
   String? get filter;
   @override
   String? get lang;
+  @override
+  int? get priority;
   @override
   List<int>? get ids;
   @override
