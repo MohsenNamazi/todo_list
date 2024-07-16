@@ -5,6 +5,7 @@ import 'package:todo_list/data/model/task_filter/task_filter.dart';
 import 'package:todo_list/features/common/consts/spacing.dart';
 import 'package:todo_list/features/common/extensions/build_context.dart';
 import 'package:todo_list/features/tasks/cubit/projects_cubit/projects_cubit.dart';
+import 'package:todo_list/features/tasks/widgets/list_title.dart';
 
 class TasksFilterView extends StatelessWidget {
   const TasksFilterView({
@@ -16,17 +17,24 @@ class TasksFilterView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return SizedBox(
-      height: kToolbarHeight,
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          children: [
-            const SizedBox(width: Spacing.s4),
-            _ProjectFilter(taskFilterNotifier),
-            const SizedBox(width: Spacing.s4),
-          ],
-        ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          ListTitle(title: l10n.filterBy),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                const SizedBox(width: Spacing.s4),
+                _ProjectFilter(taskFilterNotifier),
+                const SizedBox(width: Spacing.s4),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -63,7 +71,6 @@ class _ProjectFilterState extends State<_ProjectFilter> {
           underline: const SizedBox.shrink(),
           value: selectedProject,
           icon: icon,
-          iconSize: 24,
           elevation: 16,
           hint: Text(l10n.project),
           items: projects

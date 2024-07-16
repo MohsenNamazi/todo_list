@@ -7,6 +7,9 @@
     "add": "Add",
     "cancel": "Cancel",
     "addProjectsTooltip": "Add new project",
-    "anErrorHappened": "An error happened"
+    "anErrorHappened": "An error happened",
+    "todo": "TODO:",
+    "closed": "CLOSED:",
+    "filterBy": "Filter by"
 
 }

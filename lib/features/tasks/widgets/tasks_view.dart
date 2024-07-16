@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:todo_list/data/model/tasks/tasks.dart';
 import 'package:todo_list/dependency_injector/injector.dart';
 import 'package:todo_list/features/common/consts/spacing.dart';
+import 'package:todo_list/features/common/extensions/build_context.dart';
 import 'package:todo_list/features/tasks/cubit/tasks_cubit/tasks_cubit.dart';
-
-enum TasksStatus { todo, inProgress, done }
+import 'package:todo_list/features/tasks/widgets/list_title.dart';
 
 class TasksView extends StatelessWidget {
   const TasksView({
@@ -16,10 +16,19 @@ class TasksView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return ListView(
       children: [
+        ListTitle(
+          title: l10n.todo,
+          topPadding: Spacing.s4,
+        ),
         _TasksListView(
             tasks.where((task) => !(task.isCompleted ?? false)).toList()),
+        ListTitle(
+          title: l10n.closed,
+          topPadding: Spacing.s4,
+        ),
         _TasksListView(
             tasks.where((task) => (task.isCompleted ?? false)).toList()),
       ],
@@ -37,6 +46,7 @@ class _TasksListView extends StatelessWidget {
       width: Spacing.s50,
       child: ListView.builder(
         shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
         itemCount: tasks.length,
         itemBuilder: (context, index) {
           final task = tasks[index];
