@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todo_list/data/model/task/task.dart';
+import 'package:todo_list/data/model/tasks/tasks.dart';
 import 'package:todo_list/dependency_injector/injector.dart';
 import 'package:todo_list/features/common/consts/spacing.dart';
 import 'package:todo_list/features/tasks/cubit/tasks_cubit/tasks_cubit.dart';
@@ -12,7 +12,7 @@ class TasksView extends StatelessWidget {
     super.key,
   });
 
-  final List<Task> tasks;
+  final Tasks tasks;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class TasksView extends StatelessWidget {
 class _TasksListView extends StatelessWidget {
   const _TasksListView(this.tasks);
 
-  final List<Task> tasks;
+  final Tasks tasks;
   @override
   Widget build(BuildContext context) {
     return SizedBox(

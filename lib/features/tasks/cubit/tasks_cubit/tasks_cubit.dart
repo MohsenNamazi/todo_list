@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:todo_list/data/model/task/task.dart';
 import 'package:todo_list/data/model/new_task/new_task.dart';
+import 'package:todo_list/data/model/tasks/tasks.dart';
 import 'package:todo_list/data/model/update_task/update_task.dart';
 import 'package:todo_list/data/model/task_filter/task_filter.dart';
 import 'package:todo_list/data/repository/tasks_repository.dart';
@@ -49,7 +50,7 @@ class TasksCubit extends Cubit<TasksState> {
       () async {
         emit(const TasksState.loading());
         final task = await _repository.createTask(newTaskBody: newTaskBody);
-        final updatedData = List<Task>.from(data)..add(task);
+        final updatedData = Tasks.from(data)..add(task);
         emit(TasksState.data(updatedData));
       },
     );
@@ -61,7 +62,7 @@ class TasksCubit extends Cubit<TasksState> {
       () async {
         emit(const TasksState.loading());
         final task = await _repository.getTask(id: id);
-        final updatedData = List<Task>.from(data)..add(task);
+        final updatedData = Tasks.from(data)..add(task);
         emit(TasksState.data(updatedData));
       },
     );

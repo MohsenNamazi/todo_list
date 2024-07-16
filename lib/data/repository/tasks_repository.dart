@@ -1,6 +1,7 @@
 import 'package:todo_list/data/model/new_task/new_task.dart';
 import 'package:todo_list/data/model/task/task.dart';
 import 'package:todo_list/data/model/task_filter/task_filter.dart';
+import 'package:todo_list/data/model/tasks/tasks.dart';
 import 'package:todo_list/data/model/update_task/update_task.dart';
 import 'package:todo_list/data/network/todoist/todoist_network.dart';
 
@@ -8,7 +9,7 @@ class TasksRepository {
   TasksRepository(this._network);
   final TodoistNetwork _network;
 
-  Future<List<Task>> getTasks({TaskFilter? taskFilter}) async {
+  Future<Tasks> getTasks({TaskFilter? taskFilter}) async {
     return await _network.getTasks(taskFilter);
   }
 

@@ -3,6 +3,7 @@ import 'package:todo_list/data/model/new_task/new_task.dart';
 import 'package:todo_list/data/model/project/project.dart';
 import 'package:todo_list/data/model/task/task.dart';
 import 'package:todo_list/data/model/task_filter/task_filter.dart';
+import 'package:todo_list/data/model/tasks/tasks.dart';
 import 'package:todo_list/data/model/update_task/update_task.dart';
 import 'package:todo_list/data/network/dio/dio_request.dart';
 
@@ -94,7 +95,7 @@ class TodoistNetwork extends DioRequest {
   }
 
   // Get all tasks by optional filter
-  Future<List<Task>> getTasks(TaskFilter? taskFilter) async {
+  Future<Tasks> getTasks(TaskFilter? taskFilter) async {
     final queryParameters = taskFilter?.toJson()
       ?..removeWhere((k, v) => v == null);
     final response = await setDioRequest<List<dynamic>>(

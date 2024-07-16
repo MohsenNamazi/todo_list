@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_list/data/model/task_filter/task_filter.dart';
+import 'package:todo_list/data/model/tasks/tasks.dart';
 import 'package:todo_list/features/common/extensions/build_context.dart';
 import 'package:todo_list/features/tasks/cubit/tasks_cubit/tasks_cubit.dart';
 import 'package:todo_list/features/tasks/widgets/tasks_expandable_fab.dart';
@@ -49,10 +50,10 @@ class _TasksScreenState extends State<TasksScreen> {
                       },
                       builder: (context, state) => state.maybeWhen(
                             data: (tasks) => TasksView(
-                              tasks: tasks,
+                              tasks: tasks.fiter(taskFilter),
                             ),
                             error: (_, __, tasks) => TasksView(
-                              tasks: tasks,
+                              tasks: tasks.fiter(taskFilter),
                             ),
                             orElse: () => const LoadingIndicator(),
                           ));
