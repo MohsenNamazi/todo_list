@@ -20,13 +20,13 @@ class TasksView extends StatelessWidget {
     return ListView(
       children: [
         ListTitle(
-          title: l10n.todo,
+          l10n.todo,
           topPadding: Spacing.s4,
         ),
         _TasksListView(
             tasks.where((task) => !(task.isCompleted ?? false)).toList()),
         ListTitle(
-          title: l10n.closed,
+          l10n.closed,
           topPadding: Spacing.s4,
         ),
         _TasksListView(

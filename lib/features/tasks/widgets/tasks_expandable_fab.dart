@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_list/app_router.dart';
 import 'package:todo_list/dependency_injector/injector.dart';
 import 'package:todo_list/features/common/consts/spacing.dart';
 import 'package:todo_list/features/common/extensions/build_context.dart';
@@ -64,7 +65,9 @@ class _TasksExpandableFabState extends State<TasksExpandableFab> {
     );
   }
 
-  void _createNewTask() {}
+  void _createNewTask() {
+    inject<AppRouter>().push(const NewTaskRoute());
+  }
 
   @override
   void dispose() {

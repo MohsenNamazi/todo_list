@@ -3,7 +3,7 @@ import 'package:todo_list/features/common/consts/spacing.dart';
 import 'package:todo_list/features/common/theme/colors.dart';
 
 class ListTitle extends StatelessWidget {
-  const ListTitle({super.key, required this.title, this.topPadding = 0});
+  const ListTitle(this.title, {super.key, this.topPadding = 0});
   final String title;
   final double topPadding;
 

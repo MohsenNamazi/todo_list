@@ -10,6 +10,13 @@
     "anErrorHappened": "An error happened",
     "todo": "TODO:",
     "closed": "CLOSED:",
-    "filterBy": "Filter by"
-
+    "filterBy": "Filter by",
+    "addNewTask": "Add a new Task",
+    "titleError": "Please enter title",
+    "newTaskTitle": "Set a title",
+    "description": "Description",
+    "date": "Date",
+    "time": "Time",
+    "priority": "Priority",
+    "done": "Done"
 }
