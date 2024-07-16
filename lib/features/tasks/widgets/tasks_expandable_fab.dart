@@ -19,10 +19,12 @@ class TasksExpandableFab extends StatefulWidget {
 
 class _TasksExpandableFabState extends State<TasksExpandableFab> {
   final _newProjectTaxtcontroller = TextEditingController();
+  final _fabController = FabController();
 
   @override
   Widget build(BuildContext context) {
     return ExpandableFab(
+      fabController: _fabController,
       distance: Spacing.s17,
       children: [
         ActionButton(
@@ -38,6 +40,7 @@ class _TasksExpandableFabState extends State<TasksExpandableFab> {
   }
 
   void _showAction(BuildContext context, FabActions action) {
+    _fabController.toggle();
     switch (action) {
       case FabActions.newTask:
         _createNewTask();
@@ -72,6 +75,7 @@ class _TasksExpandableFabState extends State<TasksExpandableFab> {
   @override
   void dispose() {
     _newProjectTaxtcontroller.dispose();
+    _fabController.dispose();
     super.dispose();
   }
 }

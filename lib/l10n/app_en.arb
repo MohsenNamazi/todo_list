@@ -5,6 +5,7 @@
     "tasks": "Tasks",
     "enterProjectName": "Enter the new project name:",
     "add": "Add",
+    "taskCreated": "The task has successfull created",
     "cancel": "Cancel",
     "addProjectsTooltip": "Add new project",
     "anErrorHappened": "An error happened",

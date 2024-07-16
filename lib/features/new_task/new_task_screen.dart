@@ -1,10 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_list/app_router.dart';
 import 'package:todo_list/data/model/new_task/new_task.dart';
 import 'package:todo_list/data/model/project/project.dart';
+import 'package:todo_list/dependency_injector/injector.dart';
 import 'package:todo_list/features/common/consts/spacing.dart';
 import 'package:todo_list/features/common/extensions/build_context.dart';
 import 'package:todo_list/features/common/theme/colors.dart';
+import 'package:todo_list/features/tasks/cubit/tasks_cubit/tasks_cubit.dart';
 import 'package:todo_list/features/widgets/custom_text_form_field.dart';
 import 'package:todo_list/features/widgets/priority_selector.dart';
 import 'package:todo_list/features/widgets/project_selector.dart';
@@ -33,106 +37,133 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
       appBar: AppBar(
         title: Text(l10n.addNewTask),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Expanded(
-                child: ListView(
+      body: BlocConsumer<TasksCubit, TasksState>(
+          listener: (context, state) {
+            state.maybeWhen(
+              error: (_, __, ___) => ScaffoldMessenger.of(context)
+                  .showSnackBar(SnackBar(content: Text(l10n.anErrorHappened))),
+              data: (_) {
+                inject<AppRouter>().maybePop();
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(SnackBar(content: Text(l10n.taskCreated)));
+              },
+              orElse: () => null,
+            );
+          },
+          listenWhen: (_, current) => current.maybeWhen(
+                orElse: () => false,
+                error: (_, __, ___) => true,
+                data: (tasks) => true,
+              ),
+          builder: (context, state) {
+            final isSaving = state.maybeWhen(
+              orElse: () => false,
+              loading: () => true,
+            );
+
+            return Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    CustomTextFormField(
-                      labelText: l10n.newTaskTitle,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return l10n.titleError;
-                        }
-                        return null;
-                      },
-                      onSaved: (value) =>
-                          _newTaskBody = _newTaskBody.copyWith(content: value!),
+                    Expanded(
+                      child: ListView(
+                        children: [
+                          CustomTextFormField(
+                            labelText: l10n.newTaskTitle,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return l10n.titleError;
+                              }
+                              return null;
+                            },
+                            onSaved: (value) => _newTaskBody =
+                                _newTaskBody.copyWith(content: value!),
+                          ),
+                          const SizedBox(height: Spacing.s4),
+                          CustomTextFormField(
+                            labelText: l10n.description,
+                            maxLines: 5,
+                            onSaved: (value) => _newTaskBody =
+                                _newTaskBody.copyWith(description: value),
+                          ),
+                          const SizedBox(height: Spacing.s4),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Center(
+                                  child: ProjectSelector(
+                                    onChanged: (project) {
+                                      selectedProject = project;
+                                    },
+                                  ),
+                                ),
+                              ),
+                              ColoredBox(
+                                color: ColorPalettes.neutral[300]!,
+                                child: const SizedBox(
+                                  width: Spacing.s1,
+                                  height: Spacing.s5,
+                                ),
+                              ),
+                              Expanded(
+                                child: Center(
+                                  child: PrioritySelector(
+                                    onChanged: (priority) {},
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: Spacing.s4),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: ListTile(
+                                  title: Text(_selectedDueDate == null
+                                      ? l10n.date
+                                      : '${_selectedDueDate!.toLocal()}'
+                                          .split(' ')[0]),
+                                  trailing: const Icon(Icons.calendar_today),
+                                  onTap: _pickDueDate,
+                                ),
+                              ),
+                              ColoredBox(
+                                color: ColorPalettes.neutral[300]!,
+                                child: const SizedBox(
+                                  width: Spacing.s1,
+                                  height: Spacing.s5,
+                                ),
+                              ),
+                              Expanded(
+                                child: ListTile(
+                                  title: Text(_selectedDueTime == null
+                                      ? l10n.time
+                                      : _selectedDueTime!.format(context)),
+                                  trailing: const Icon(Icons.access_time),
+                                  onTap: _pickDueTime,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: Spacing.s5),
+                        ],
+                      ),
                     ),
-                    const SizedBox(height: Spacing.s4),
-                    CustomTextFormField(
-                      labelText: l10n.description,
-                      maxLines: 5,
-                      onSaved: (value) => _newTaskBody =
-                          _newTaskBody.copyWith(description: value),
+                    ElevatedButton(
+                      onPressed: isSaving ? null : _submitForm,
+                      child: isSaving
+                          ? CircularProgressIndicator(color: ColorPalettes.pink)
+                          : Text(l10n.done),
                     ),
-                    const SizedBox(height: Spacing.s4),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Center(
-                            child: ProjectSelector(
-                              onChanged: (project) {
-                                selectedProject = project;
-                              },
-                            ),
-                          ),
-                        ),
-                        ColoredBox(
-                          color: ColorPalettes.neutral[300]!,
-                          child: const SizedBox(
-                            width: Spacing.s1,
-                            height: Spacing.s5,
-                          ),
-                        ),
-                        Expanded(
-                          child: Center(
-                            child: PrioritySelector(
-                              onChanged: (priority) {},
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: Spacing.s4),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: ListTile(
-                            title: Text(_selectedDueDate == null
-                                ? l10n.date
-                                : '${_selectedDueDate!.toLocal()}'
-                                    .split(' ')[0]),
-                            trailing: const Icon(Icons.calendar_today),
-                            onTap: _pickDueDate,
-                          ),
-                        ),
-                        ColoredBox(
-                          color: ColorPalettes.neutral[300]!,
-                          child: const SizedBox(
-                            width: Spacing.s1,
-                            height: Spacing.s5,
-                          ),
-                        ),
-                        Expanded(
-                          child: ListTile(
-                            title: Text(_selectedDueTime == null
-                                ? l10n.time
-                                : _selectedDueTime!.format(context)),
-                            trailing: const Icon(Icons.access_time),
-                            onTap: _pickDueTime,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: Spacing.s5),
+                    SizedBox(height: bottomPadding),
                   ],
                 ),
               ),
-              ElevatedButton(
-                onPressed: _submitForm,
-                child: Text(l10n.done),
-              ),
-              SizedBox(height: bottomPadding),
-            ],
-          ),
-        ),
-      ),
+            );
+          }),
     );
   }
 
@@ -182,7 +213,7 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      // Call the API with _newTaskBody
+      inject<TasksCubit>().createTask(_newTaskBody);
     }
   }
 }

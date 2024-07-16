@@ -3,16 +3,25 @@ import 'dart:math' as math;
 
 import 'package:todo_list/features/common/theme/colors.dart';
 
+class FabController extends ValueNotifier<bool> {
+  FabController() : super(false);
+  void toggle() {
+    value = !value;
+  }
+}
+
 @immutable
 class ExpandableFab extends StatefulWidget {
   const ExpandableFab({
     super.key,
     required this.distance,
     required this.children,
+    required this.fabController,
   });
 
   final double distance;
   final List<Widget> children;
+  final FabController fabController;
 
   @override
   State<ExpandableFab> createState() => _ExpandableFabState();
@@ -22,13 +31,12 @@ class _ExpandableFabState extends State<ExpandableFab>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<double> _expandAnimation;
-  final _isExpandedNotifier = ValueNotifier(false);
 
   @override
   void initState() {
     super.initState();
     _controller = AnimationController(
-      value: _isExpandedNotifier.value ? 1.0 : 0.0,
+      value: widget.fabController.value ? 1.0 : 0.0,
       duration: const Duration(milliseconds: 250),
       vsync: this,
     );
@@ -37,21 +45,19 @@ class _ExpandableFabState extends State<ExpandableFab>
       reverseCurve: Curves.easeOutQuad,
       parent: _controller,
     );
+    widget.fabController.addListener(() {
+      if (widget.fabController.value) {
+        _controller.forward();
+      } else {
+        _controller.reverse();
+      }
+    });
   }
 
   @override
   void dispose() {
     _controller.dispose();
     super.dispose();
-  }
-
-  void _toggle() {
-    _isExpandedNotifier.value = !_isExpandedNotifier.value;
-    if (_isExpandedNotifier.value) {
-      _controller.forward();
-    } else {
-      _controller.reverse();
-    }
   }
 
   @override
@@ -79,7 +85,7 @@ class _ExpandableFabState extends State<ExpandableFab>
           clipBehavior: Clip.antiAlias,
           elevation: 4,
           child: InkWell(
-            onTap: _toggle,
+            onTap: widget.fabController.toggle,
             child: Padding(
               padding: const EdgeInsets.all(8),
               child: Icon(
@@ -114,7 +120,7 @@ class _ExpandableFabState extends State<ExpandableFab>
 
   Widget _buildTapToOpenFab() {
     return ValueListenableBuilder(
-        valueListenable: _isExpandedNotifier,
+        valueListenable: widget.fabController,
         builder: (context, isExpanded, _) {
           return IgnorePointer(
             ignoring: isExpanded,
@@ -132,7 +138,7 @@ class _ExpandableFabState extends State<ExpandableFab>
                 curve: const Interval(0.25, 1.0, curve: Curves.easeInOut),
                 duration: const Duration(milliseconds: 250),
                 child: FloatingActionButton(
-                  onPressed: _toggle,
+                  onPressed: widget.fabController.toggle,
                   child: const Icon(Icons.add),
                 ),
               ),
