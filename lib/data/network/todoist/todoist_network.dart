@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:todo_list/data/model/comment/comment.dart';
+import 'package:todo_list/data/model/new_comment/new_comment.dart';
 import 'package:todo_list/data/model/new_task/new_task.dart';
 import 'package:todo_list/data/model/project/project.dart';
 import 'package:todo_list/data/model/task/task.dart';
@@ -189,6 +191,79 @@ class TodoistNetwork extends DioRequest {
   Future<bool> deleteTask({required String id}) async {
     final response = await setDioRequest<bool>(
       url: '/tasks/$id',
+      contentType: 'multipart/form-data',
+      method: RequestMethod.delete,
+      headers: requestHeader,
+    );
+    if (response.statusCode != 204) {
+      throw DioException.badResponse(
+          statusCode: response.statusCode ?? 0,
+          requestOptions: RequestOptions(),
+          response: response);
+    }
+    return true;
+  }
+
+  // Get all comments by task id
+  Future<List<Comment>> getComments(String taskId) async {
+    final queryParameters = {'task_id': taskId};
+    final response = await setDioRequest<List<dynamic>>(
+      url: '/comments',
+      contentType: 'multipart/form-data',
+      method: RequestMethod.get,
+      headers: requestHeader,
+      queryParameters: queryParameters,
+    );
+    List<dynamic> data = response.data!;
+    return data.map((comment) => Comment.fromJson(comment)).toList();
+  }
+
+  // Create a new comment
+  Future<Comment> createComment(
+      {required NewCommentBody newCommentBody}) async {
+    final queryParameters = newCommentBody.toJson()
+      ..removeWhere((k, v) => v == null);
+    final response = await setDioRequest<Map<String, dynamic>>(
+      url: '/comments',
+      contentType: 'multipart/form-data',
+      method: RequestMethod.post,
+      headers: requestHeader,
+      queryParameters: queryParameters,
+    );
+    return Comment.fromJson(response.data!);
+  }
+
+  // Get a comment by id
+  Future<Comment> getComment({required String id}) async {
+    final response = await setDioRequest<Map<String, dynamic>>(
+      url: '/comments/$id',
+      contentType: 'multipart/form-data',
+      method: RequestMethod.get,
+      headers: requestHeader,
+    );
+    return Comment.fromJson(response.data!);
+  }
+
+  // Update the comment
+  Future<Comment> updateComment({
+    required String id,
+    required String content,
+  }) async {
+    final queryParameters = {'content': content};
+    final response = await setDioRequest<Map<String, dynamic>>(
+      url: '/comments/$id',
+      contentType: 'multipart/form-data',
+      method: RequestMethod.post,
+      headers: requestHeader,
+      queryParameters: queryParameters,
+    );
+    return Comment.fromJson(response.data!);
+  }
+
+  // Delete a project by id
+  Future<bool> deleteComment({required String id}) async {
+    final response = await setDioRequest<bool>(
+      url: '/comments/$id',
       contentType: 'multipart/form-data',
       method: RequestMethod.delete,
       headers: requestHeader,

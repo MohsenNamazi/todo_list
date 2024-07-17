@@ -1,20 +1,18 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:todo_list/data/model/attachment/attachment.dart';
 
-part 'comment.freezed.dart';
-part 'comment.g.dart';
+part 'new_comment.freezed.dart';
+part 'new_comment.g.dart';
 
 @freezed
-class Comment with _$Comment {
-  const factory Comment({
-    required String id,
+class NewCommentBody with _$NewCommentBody {
+  const factory NewCommentBody({
     @JsonKey(name: 'task_id') String? taskId,
     @JsonKey(name: 'project_id') String? projectId,
-    @JsonKey(name: 'posted_at') required String postedAt,
     required String content,
     Attachment? attachment,
-  }) = _Comment;
+  }) = _NewCommentBody;
 
-  factory Comment.fromJson(Map<String, dynamic> json) =>
-      _$CommentFromJson(json);
+  factory NewCommentBody.fromJson(Map<String, dynamic> json) =>
+      _$NewCommentBodyFromJson(json);
 }

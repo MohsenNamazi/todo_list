@@ -20,9 +20,13 @@ Attachment _$AttachmentFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Attachment {
+  @JsonKey(name: 'file_name')
   String get fileName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'file_type')
   String get fileType => throw _privateConstructorUsedError;
+  @JsonKey(name: 'file_url')
   String get fileUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: 'resource_type')
   String get resourceType => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -38,7 +42,10 @@ abstract class $AttachmentCopyWith<$Res> {
       _$AttachmentCopyWithImpl<$Res, Attachment>;
   @useResult
   $Res call(
-      {String fileName, String fileType, String fileUrl, String resourceType});
+      {@JsonKey(name: 'file_name') String fileName,
+      @JsonKey(name: 'file_type') String fileType,
+      @JsonKey(name: 'file_url') String fileUrl,
+      @JsonKey(name: 'resource_type') String resourceType});
 }
 
 /// @nodoc
@@ -89,7 +96,10 @@ abstract class _$$AttachmentImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String fileName, String fileType, String fileUrl, String resourceType});
+      {@JsonKey(name: 'file_name') String fileName,
+      @JsonKey(name: 'file_type') String fileType,
+      @JsonKey(name: 'file_url') String fileUrl,
+      @JsonKey(name: 'resource_type') String resourceType});
 }
 
 /// @nodoc
@@ -133,21 +143,25 @@ class __$$AttachmentImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AttachmentImpl implements _Attachment {
   const _$AttachmentImpl(
-      {required this.fileName,
-      required this.fileType,
-      required this.fileUrl,
-      required this.resourceType});
+      {@JsonKey(name: 'file_name') required this.fileName,
+      @JsonKey(name: 'file_type') required this.fileType,
+      @JsonKey(name: 'file_url') required this.fileUrl,
+      @JsonKey(name: 'resource_type') required this.resourceType});
 
   factory _$AttachmentImpl.fromJson(Map<String, dynamic> json) =>
       _$$AttachmentImplFromJson(json);
 
   @override
+  @JsonKey(name: 'file_name')
   final String fileName;
   @override
+  @JsonKey(name: 'file_type')
   final String fileType;
   @override
+  @JsonKey(name: 'file_url')
   final String fileUrl;
   @override
+  @JsonKey(name: 'resource_type')
   final String resourceType;
 
   @override
@@ -190,21 +204,26 @@ class _$AttachmentImpl implements _Attachment {
 
 abstract class _Attachment implements Attachment {
   const factory _Attachment(
-      {required final String fileName,
-      required final String fileType,
-      required final String fileUrl,
-      required final String resourceType}) = _$AttachmentImpl;
+          {@JsonKey(name: 'file_name') required final String fileName,
+          @JsonKey(name: 'file_type') required final String fileType,
+          @JsonKey(name: 'file_url') required final String fileUrl,
+          @JsonKey(name: 'resource_type') required final String resourceType}) =
+      _$AttachmentImpl;
 
   factory _Attachment.fromJson(Map<String, dynamic> json) =
       _$AttachmentImpl.fromJson;
 
   @override
+  @JsonKey(name: 'file_name')
   String get fileName;
   @override
+  @JsonKey(name: 'file_type')
   String get fileType;
   @override
+  @JsonKey(name: 'file_url')
   String get fileUrl;
   @override
+  @JsonKey(name: 'resource_type')
   String get resourceType;
   @override
   @JsonKey(ignore: true)

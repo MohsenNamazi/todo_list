@@ -8,16 +8,16 @@ part of 'attachment.dart';
 
 _$AttachmentImpl _$$AttachmentImplFromJson(Map<String, dynamic> json) =>
     _$AttachmentImpl(
-      fileName: json['fileName'] as String,
-      fileType: json['fileType'] as String,
-      fileUrl: json['fileUrl'] as String,
-      resourceType: json['resourceType'] as String,
+      fileName: json['file_name'] as String,
+      fileType: json['file_type'] as String,
+      fileUrl: json['file_url'] as String,
+      resourceType: json['resource_type'] as String,
     );
 
 Map<String, dynamic> _$$AttachmentImplToJson(_$AttachmentImpl instance) =>
     <String, dynamic>{
-      'fileName': instance.fileName,
-      'fileType': instance.fileType,
-      'fileUrl': instance.fileUrl,
-      'resourceType': instance.resourceType,
+      'file_name': instance.fileName,
+      'file_type': instance.fileType,
+      'file_url': instance.fileUrl,
+      'resource_type': instance.resourceType,
     };

@@ -5,7 +5,7 @@ import 'package:todo_list/data/model/task_filter/task_filter.dart';
 import 'package:todo_list/data/model/update_task/update_task.dart';
 import 'package:todo_list/data/repository/tasks_repository.dart';
 
-import '../../mocks/todist_network_mock.dart';
+import '../../mocks/todoist_network_mock.dart';
 import '../model/task.dart';
 
 class NewTaskBodyFake extends Fake implements NewTaskBody {}

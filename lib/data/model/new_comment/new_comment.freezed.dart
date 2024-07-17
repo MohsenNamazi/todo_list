@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'comment.dart';
+part of 'new_comment.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,37 +14,34 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-Comment _$CommentFromJson(Map<String, dynamic> json) {
-  return _Comment.fromJson(json);
+NewCommentBody _$NewCommentBodyFromJson(Map<String, dynamic> json) {
+  return _NewCommentBody.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Comment {
-  String get id => throw _privateConstructorUsedError;
+mixin _$NewCommentBody {
   @JsonKey(name: 'task_id')
   String? get taskId => throw _privateConstructorUsedError;
   @JsonKey(name: 'project_id')
   String? get projectId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'posted_at')
-  String get postedAt => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
   Attachment? get attachment => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $CommentCopyWith<Comment> get copyWith => throw _privateConstructorUsedError;
+  $NewCommentBodyCopyWith<NewCommentBody> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CommentCopyWith<$Res> {
-  factory $CommentCopyWith(Comment value, $Res Function(Comment) then) =
-      _$CommentCopyWithImpl<$Res, Comment>;
+abstract class $NewCommentBodyCopyWith<$Res> {
+  factory $NewCommentBodyCopyWith(
+          NewCommentBody value, $Res Function(NewCommentBody) then) =
+      _$NewCommentBodyCopyWithImpl<$Res, NewCommentBody>;
   @useResult
   $Res call(
-      {String id,
-      @JsonKey(name: 'task_id') String? taskId,
+      {@JsonKey(name: 'task_id') String? taskId,
       @JsonKey(name: 'project_id') String? projectId,
-      @JsonKey(name: 'posted_at') String postedAt,
       String content,
       Attachment? attachment});
 
@@ -52,9 +49,9 @@ abstract class $CommentCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$CommentCopyWithImpl<$Res, $Val extends Comment>
-    implements $CommentCopyWith<$Res> {
-  _$CommentCopyWithImpl(this._value, this._then);
+class _$NewCommentBodyCopyWithImpl<$Res, $Val extends NewCommentBody>
+    implements $NewCommentBodyCopyWith<$Res> {
+  _$NewCommentBodyCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -64,18 +61,12 @@ class _$CommentCopyWithImpl<$Res, $Val extends Comment>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? taskId = freezed,
     Object? projectId = freezed,
-    Object? postedAt = null,
     Object? content = null,
     Object? attachment = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
       taskId: freezed == taskId
           ? _value.taskId
           : taskId // ignore: cast_nullable_to_non_nullable
@@ -84,10 +75,6 @@ class _$CommentCopyWithImpl<$Res, $Val extends Comment>
           ? _value.projectId
           : projectId // ignore: cast_nullable_to_non_nullable
               as String?,
-      postedAt: null == postedAt
-          ? _value.postedAt
-          : postedAt // ignore: cast_nullable_to_non_nullable
-              as String,
       content: null == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -113,17 +100,16 @@ class _$CommentCopyWithImpl<$Res, $Val extends Comment>
 }
 
 /// @nodoc
-abstract class _$$CommentImplCopyWith<$Res> implements $CommentCopyWith<$Res> {
-  factory _$$CommentImplCopyWith(
-          _$CommentImpl value, $Res Function(_$CommentImpl) then) =
-      __$$CommentImplCopyWithImpl<$Res>;
+abstract class _$$NewCommentBodyImplCopyWith<$Res>
+    implements $NewCommentBodyCopyWith<$Res> {
+  factory _$$NewCommentBodyImplCopyWith(_$NewCommentBodyImpl value,
+          $Res Function(_$NewCommentBodyImpl) then) =
+      __$$NewCommentBodyImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {String id,
-      @JsonKey(name: 'task_id') String? taskId,
+      {@JsonKey(name: 'task_id') String? taskId,
       @JsonKey(name: 'project_id') String? projectId,
-      @JsonKey(name: 'posted_at') String postedAt,
       String content,
       Attachment? attachment});
 
@@ -132,28 +118,22 @@ abstract class _$$CommentImplCopyWith<$Res> implements $CommentCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$CommentImplCopyWithImpl<$Res>
-    extends _$CommentCopyWithImpl<$Res, _$CommentImpl>
-    implements _$$CommentImplCopyWith<$Res> {
-  __$$CommentImplCopyWithImpl(
-      _$CommentImpl _value, $Res Function(_$CommentImpl) _then)
+class __$$NewCommentBodyImplCopyWithImpl<$Res>
+    extends _$NewCommentBodyCopyWithImpl<$Res, _$NewCommentBodyImpl>
+    implements _$$NewCommentBodyImplCopyWith<$Res> {
+  __$$NewCommentBodyImplCopyWithImpl(
+      _$NewCommentBodyImpl _value, $Res Function(_$NewCommentBodyImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? taskId = freezed,
     Object? projectId = freezed,
-    Object? postedAt = null,
     Object? content = null,
     Object? attachment = freezed,
   }) {
-    return _then(_$CommentImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
+    return _then(_$NewCommentBodyImpl(
       taskId: freezed == taskId
           ? _value.taskId
           : taskId // ignore: cast_nullable_to_non_nullable
@@ -162,10 +142,6 @@ class __$$CommentImplCopyWithImpl<$Res>
           ? _value.projectId
           : projectId // ignore: cast_nullable_to_non_nullable
               as String?,
-      postedAt: null == postedAt
-          ? _value.postedAt
-          : postedAt // ignore: cast_nullable_to_non_nullable
-              as String,
       content: null == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -180,20 +156,16 @@ class __$$CommentImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$CommentImpl implements _Comment {
-  const _$CommentImpl(
-      {required this.id,
-      @JsonKey(name: 'task_id') this.taskId,
+class _$NewCommentBodyImpl implements _NewCommentBody {
+  const _$NewCommentBodyImpl(
+      {@JsonKey(name: 'task_id') this.taskId,
       @JsonKey(name: 'project_id') this.projectId,
-      @JsonKey(name: 'posted_at') required this.postedAt,
       required this.content,
       this.attachment});
 
-  factory _$CommentImpl.fromJson(Map<String, dynamic> json) =>
-      _$$CommentImplFromJson(json);
+  factory _$NewCommentBodyImpl.fromJson(Map<String, dynamic> json) =>
+      _$$NewCommentBodyImplFromJson(json);
 
-  @override
-  final String id;
   @override
   @JsonKey(name: 'task_id')
   final String? taskId;
@@ -201,29 +173,23 @@ class _$CommentImpl implements _Comment {
   @JsonKey(name: 'project_id')
   final String? projectId;
   @override
-  @JsonKey(name: 'posted_at')
-  final String postedAt;
-  @override
   final String content;
   @override
   final Attachment? attachment;
 
   @override
   String toString() {
-    return 'Comment(id: $id, taskId: $taskId, projectId: $projectId, postedAt: $postedAt, content: $content, attachment: $attachment)';
+    return 'NewCommentBody(taskId: $taskId, projectId: $projectId, content: $content, attachment: $attachment)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CommentImpl &&
-            (identical(other.id, id) || other.id == id) &&
+            other is _$NewCommentBodyImpl &&
             (identical(other.taskId, taskId) || other.taskId == taskId) &&
             (identical(other.projectId, projectId) ||
                 other.projectId == projectId) &&
-            (identical(other.postedAt, postedAt) ||
-                other.postedAt == postedAt) &&
             (identical(other.content, content) || other.content == content) &&
             (identical(other.attachment, attachment) ||
                 other.attachment == attachment));
@@ -231,36 +197,34 @@ class _$CommentImpl implements _Comment {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, taskId, projectId, postedAt, content, attachment);
+  int get hashCode =>
+      Object.hash(runtimeType, taskId, projectId, content, attachment);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$CommentImplCopyWith<_$CommentImpl> get copyWith =>
-      __$$CommentImplCopyWithImpl<_$CommentImpl>(this, _$identity);
+  _$$NewCommentBodyImplCopyWith<_$NewCommentBodyImpl> get copyWith =>
+      __$$NewCommentBodyImplCopyWithImpl<_$NewCommentBodyImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$CommentImplToJson(
+    return _$$NewCommentBodyImplToJson(
       this,
     );
   }
 }
 
-abstract class _Comment implements Comment {
-  const factory _Comment(
-      {required final String id,
-      @JsonKey(name: 'task_id') final String? taskId,
+abstract class _NewCommentBody implements NewCommentBody {
+  const factory _NewCommentBody(
+      {@JsonKey(name: 'task_id') final String? taskId,
       @JsonKey(name: 'project_id') final String? projectId,
-      @JsonKey(name: 'posted_at') required final String postedAt,
       required final String content,
-      final Attachment? attachment}) = _$CommentImpl;
+      final Attachment? attachment}) = _$NewCommentBodyImpl;
 
-  factory _Comment.fromJson(Map<String, dynamic> json) = _$CommentImpl.fromJson;
+  factory _NewCommentBody.fromJson(Map<String, dynamic> json) =
+      _$NewCommentBodyImpl.fromJson;
 
-  @override
-  String get id;
   @override
   @JsonKey(name: 'task_id')
   String? get taskId;
@@ -268,14 +232,11 @@ abstract class _Comment implements Comment {
   @JsonKey(name: 'project_id')
   String? get projectId;
   @override
-  @JsonKey(name: 'posted_at')
-  String get postedAt;
-  @override
   String get content;
   @override
   Attachment? get attachment;
   @override
   @JsonKey(ignore: true)
-  _$$CommentImplCopyWith<_$CommentImpl> get copyWith =>
+  _$$NewCommentBodyImplCopyWith<_$NewCommentBodyImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:todo_list/data/model/comment/comment.dart';
+import 'package:todo_list/data/model/new_comment/new_comment.dart';
 import 'package:todo_list/data/model/project/project.dart';
 import 'package:todo_list/data/model/task/task.dart';
 import 'package:todo_list/data/model/task_filter/task_filter.dart';
@@ -278,6 +280,121 @@ void main() {
       late bool isErrorHappened;
       try {
         await todoistNetwork.deleteTask(id: id);
+        isErrorHappened = false;
+      } catch (e) {
+        isErrorHappened = true;
+      }
+      expect(isErrorHappened, true);
+    });
+  });
+
+  group('TodoistNetwork - Comments', () {
+    test('returns Comments on successful get Comments call', () async {
+      final response = await FileLoader()
+          .loadFile<List<dynamic>>('test/assets/comments.json');
+
+      const taskId = '2995104339';
+
+      Dio dio = DioMock().mockData<List<dynamic>>(
+          '/comments', baseUrl, response,
+          queryParameters: {'task_id': taskId});
+
+      final todoistNetwork = TodoistNetwork(dio);
+
+      final comments =
+          response.map((comment) => Comment.fromJson(comment)).toList();
+
+      final result = await todoistNetwork.getComments(taskId);
+
+      expect(result, equals(comments));
+    });
+
+    test('returns Comment on successful create Comment call', () async {
+      final response = await FileLoader()
+          .loadFile<Map<String, dynamic>>('test/assets/comment.json');
+
+      final newCommentBody = NewCommentBody.fromJson(response);
+
+      Dio dio = DioMock().mockData<Map<String, dynamic>>(
+          '/comments', baseUrl, response,
+          queryParameters: newCommentBody.toJson());
+
+      final todoistNetwork = TodoistNetwork(dio);
+
+      final comment = Comment.fromJson(response);
+
+      final result =
+          await todoistNetwork.createComment(newCommentBody: newCommentBody);
+
+      expect(result, equals(comment));
+    });
+
+    test('returns Comment on successful get Comment call', () async {
+      final response = await FileLoader()
+          .loadFile<Map<String, dynamic>>('test/assets/comment.json');
+
+      const id = '2992679862';
+
+      Dio dio = DioMock()
+          .mockData<Map<String, dynamic>>('/comments/$id', baseUrl, response);
+
+      final todoistNetwork = TodoistNetwork(dio);
+
+      final comment = Comment.fromJson(response);
+
+      final result = await todoistNetwork.getComment(id: comment.id);
+
+      expect(result, equals(comment));
+    });
+
+    test('returns Comment on successful update Comment call', () async {
+      final response = await FileLoader()
+          .loadFile<Map<String, dynamic>>('test/assets/comment.json');
+
+      const id = '2992679862';
+      const content = 'Need one bottle of milk';
+
+      Dio dio = DioMock().mockData<Map<String, dynamic>>(
+          '/comments/$id', baseUrl, response,
+          queryParameters: {'content': content});
+
+      final todoistNetwork = TodoistNetwork(dio);
+
+      final comment = Comment.fromJson(response);
+
+      final result =
+          await todoistNetwork.updateComment(id: comment.id, content: content);
+
+      expect(result, equals(comment));
+    });
+
+    test('returns true on successful delete Comment call', () async {
+      const id = '2992679862';
+
+      Dio dio = DioMock()
+          .mockData<bool>('/comments/$id', baseUrl, true, statusCode: 204);
+
+      final todoistNetwork = TodoistNetwork(dio);
+      late bool isErrorHappened;
+      try {
+        await todoistNetwork.deleteComment(id: id);
+        isErrorHappened = false;
+      } catch (e) {
+        isErrorHappened = true;
+      }
+      expect(isErrorHappened, false);
+    });
+
+    test('returns error on unsuccessful delete Comment call', () async {
+      const id = '2992679862';
+
+      Dio dio = DioMock()
+          .mockData<bool>('/comments/$id', baseUrl, true, statusCode: 400);
+
+      final todoistNetwork = TodoistNetwork(dio);
+      late bool isErrorHappened;
+      try {
+        await todoistNetwork.deleteComment(id: id);
         isErrorHappened = false;
       } catch (e) {
         isErrorHappened = true;

@@ -2,7 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:todo_list/data/repository/projects_repository.dart';
 
-import '../../mocks/todist_network_mock.dart';
+import '../../mocks/todoist_network_mock.dart';
 import '../model/project.dart';
 
 void main() {

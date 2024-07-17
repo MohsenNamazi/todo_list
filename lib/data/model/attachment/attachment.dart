@@ -6,10 +6,10 @@ part 'attachment.g.dart';
 @freezed
 class Attachment with _$Attachment {
   const factory Attachment({
-    required String fileName,
-    required String fileType,
-    required String fileUrl,
-    required String resourceType,
+    @JsonKey(name: 'file_name') required String fileName,
+    @JsonKey(name: 'file_type') required String fileType,
+    @JsonKey(name: 'file_url') required String fileUrl,
+    @JsonKey(name: 'resource_type') required String resourceType,
   }) = _Attachment;
 
   factory Attachment.fromJson(Map<String, dynamic> json) =>
